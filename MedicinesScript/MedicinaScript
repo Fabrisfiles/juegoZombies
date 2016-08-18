@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+
+public class MedicinaScript : MonoBehaviour {
+	
+	public AudioClip clip;
+
+	public float hitPoints = 50.0f;
+
+	GameObject thePlayer;
+	PlayerHealth healthScript;
+
+	void Start () {
+		thePlayer = GameObject.Find ("Player");
+		healthScript = thePlayer.GetComponent<PlayerHealth> ();
+	}
+
+	void OnTriggerEnter(Collider other){
+		if ((other.gameObject.tag == "Player") && (healthScript.currentHealth < 100)) {
+			other.SendMessageUpwards ("Medicina", hitPoints, SendMessageOptions.DontRequireReceiver);
+			AudioSource.PlayClipAtPoint(clip, transform.position);
+			Destroy (gameObject);
+		}
+	}
+}
