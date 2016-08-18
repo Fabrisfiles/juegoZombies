@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
+public class LoadScreen : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		StartCoroutine (WaitLoad ());	
+	}
+
+	public IEnumerator WaitLoad(){
+		AsyncOperation async = SceneManager.LoadSceneAsync ("Hospital", LoadSceneMode.Single);
+		async.allowSceneActivation = false;
+		yield return new WaitForSeconds (15.0f);
+		async.allowSceneActivation = true;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
