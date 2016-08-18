@@ -1,0 +1,45 @@
+using UnityEngine;
+using System.Collections;
+
+public class ObjetivesScript : MonoBehaviour {
+	
+	public GameObject tachado1;
+	public GameObject tachado2;
+	public GameObject objetivo3;
+
+	public bool objetivo1Cumplido;
+	public bool objetivo2Cumplido;
+
+	// Use this for initialization
+	void Start () {
+		objetivo1Cumplido = false;
+		objetivo2Cumplido = false;
+		tachado1.SetActive (false);
+		tachado2.SetActive (false);
+		objetivo3.SetActive (false);
+	}
+
+	public void Objetivo1Cumplido(){
+		if (GameObject.Find ("Gun").GetComponent<PlayerShooting> ().keyStatusCheck()) {
+			tachado1.SetActive (true);
+			objetivo1Cumplido = true;
+		}
+	}
+
+	public void Objetivo2Cumplido(){
+		if (GameObject.Find ("Gun").GetComponent<PlayerShooting> ().enemigosRestantes == 0) {
+			tachado2.SetActive (true);
+			objetivo2Cumplido = true;
+		}
+	}
+
+	public void MostrarObjetivo3(){
+		if ((objetivo1Cumplido == true) && (objetivo2Cumplido == true)) {
+			objetivo3.SetActive (true);
+		}
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	}
+}
