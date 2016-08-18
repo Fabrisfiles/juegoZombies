@@ -1,0 +1,22 @@
+using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+
+public class LlavesScript : MonoBehaviour {
+	public AudioClip clip;
+	public Text MetaText;
+	public static int llavesEncontradas = 0;
+
+	// Use this for initialization
+	void Start () {
+	}
+		
+	void OnTriggerEnter(Collider other){
+		if (other.gameObject.tag == "Player") {
+			llavesEncontradas = llavesEncontradas + 1;
+			MetaText.text = llavesEncontradas.ToString ();
+			AudioSource.PlayClipAtPoint(clip, transform.position);
+			Destroy (gameObject);
+		}
+	}
+}
