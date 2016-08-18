@@ -1,0 +1,41 @@
+using UnityEngine;
+using System.Collections;
+
+public class WaitScriptScript : MonoBehaviour {
+	public GameObject Player;
+	public GameObject IntroCamera;
+
+	private Animator animator;
+
+	// Use this for initialization
+
+	void Awake(){
+		animator = GetComponent<Animator> ();
+	}
+
+	void Start () {
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		animator.enabled = true;
+		IntroCamera.SetActive (true);
+		Player.SetActive (false);
+		StartCoroutine (WaitForAnim ());
+	}
+
+	public IEnumerator WaitForAnim(){
+		yield return new WaitForSeconds (167.31f);
+		IntroCamera.SetActive (false);
+		Player.SetActive (true);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (Input.GetButtonDown ("Cancel")) {
+			StopCoroutine (WaitForAnim ());
+			animator.enabled = false;
+			IntroCamera.SetActive (false);
+			Player.SetActive (true);
+		}
+		
+	}
+}
