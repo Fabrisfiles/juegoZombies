@@ -1,0 +1,23 @@
+using UnityEngine;
+using System.Collections;
+
+public class CargadoresScript : MonoBehaviour {
+	public AudioClip Bullets;
+
+	PlayerShooting gunScript;
+	GameObject Gun;
+
+	void Start () {
+		Gun = GameObject.Find ("Gun");
+		gunScript = Gun.GetComponent<PlayerShooting> ();
+	}
+
+	void OnTriggerEnter(Collider other){
+		if (other.gameObject.tag == "Player") {
+			gunScript.cicles = gunScript.cicles + 2;
+			AudioSource.PlayClipAtPoint(Bullets, transform.position);
+
+			Destroy (gameObject);
+		}
+	}
+}
