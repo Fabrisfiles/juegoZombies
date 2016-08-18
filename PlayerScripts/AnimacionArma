@@ -1,0 +1,30 @@
+using UnityEngine;
+using System.Collections;
+
+public class AnimacionArma : MonoBehaviour {
+	private Animation anim;
+
+	PlayerShooting gunScript;
+	GameObject Gun;
+
+	// Use this for initialization
+	void Start () {
+		anim = GetComponent<Animation> ();
+		Gun = GameObject.Find ("Gun");
+		gunScript = Gun.GetComponent<PlayerShooting> ();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (Input.GetButtonDown ("Fire1") && (gunScript.BalasPorCargador > 0) ) {
+			if (gunScript.isPaused == false) {
+				anim.Play ("Fire");
+			}
+		}
+
+		if ((Input.GetKeyDown (KeyCode.R)||Input.GetButtonDown ("Fire2")) && (gunScript.BalasPorCargador == 0) && (gunScript.cicles > 0 )) {
+			anim.Play ("Reload");
+		}
+	
+	}
+}
