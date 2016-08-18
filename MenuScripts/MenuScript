@@ -1,0 +1,53 @@
+using UnityEngine;
+using System.Collections;
+
+public class MenuScript : MonoBehaviour {
+	public GameObject MainCamera;
+
+	public AudioClip MainTheme;
+
+	Animator menuAnimation;
+
+	void Awake(){
+		menuAnimation = MainCamera.GetComponent<Animator> ();
+	}
+
+	public void OnClickExit(){
+		menuAnimation.SetInteger ("isExit", 1);
+		menuAnimation.SetInteger ("isNoExit", 0);
+	}
+
+	public void NoClickExit(){
+		menuAnimation.SetInteger ("isNoExit", 1);
+		menuAnimation.SetInteger ("isExit", 0);
+	}
+
+	public void OnClickQuit(){
+		Application.Quit ();
+	}
+
+	public void OnClickPlay(){
+		menuAnimation.SetInteger ("isPlay", 1);
+	}
+
+	public void OnClickControl(){
+		menuAnimation.SetInteger ("isControl", 1);
+		menuAnimation.SetInteger ("ControlOut", 0);
+	}
+
+	public void OnClickControlOut(){
+		menuAnimation.SetInteger ("ControlOut", 1);
+		menuAnimation.SetInteger ("isControl", 0);
+	}
+
+	void Start () {
+		GetComponent<AudioSource> ().clip = MainTheme;
+		GetComponent<AudioSource> ().Play ();
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
