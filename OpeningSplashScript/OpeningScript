@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
+public class OpeningScript : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		StartCoroutine (WaitOpening ());	
+	}
+
+	public IEnumerator WaitOpening(){
+		AsyncOperation async = SceneManager.LoadSceneAsync ("Menu", LoadSceneMode.Single);
+		async.allowSceneActivation = false;
+		yield return new WaitForSeconds (15.0f);
+		async.allowSceneActivation = true;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
