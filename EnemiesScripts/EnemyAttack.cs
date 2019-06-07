@@ -13,7 +13,6 @@ public class EnemyAttack : MonoBehaviour
 	bool playerInRange;
 	float timer;
 
-
 	void Awake ()
 	{
 	    player = GameObject.FindGameObjectWithTag ("Player");
@@ -22,20 +21,17 @@ public class EnemyAttack : MonoBehaviour
 	    //anim = GetComponent <Animator> ();
 	}
 
-
 	void OnTriggerEnter (Collider other)
 	{
 	    if(other.gameObject == player)
 			playerInRange = true;
 	}
 
-
 	void OnTriggerExit (Collider other)
 	{
 		if(other.gameObject == player)
 			playerInRange = false;
 	}
-
 
 	void Update ()
 	{
@@ -47,7 +43,6 @@ public class EnemyAttack : MonoBehaviour
 		if(playerHealth.currentHealth <= 0)
 			GetComponent<Animation>().STrigger ("PlayerDead");
 	}
-
 
 	void Attack ()
 	{
